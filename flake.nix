@@ -10,6 +10,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +36,8 @@
     flake-compat.url = "github:edolstra/flake-compat";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
@@ -40,11 +46,16 @@
         ./fmt-hooks.nix
       ];
 
-      perSystem = { pkgs, ... }: {
-        devShells.default = pkgs.mkShell {
-          packages = [ pkgs.git ];
-          name = "dots";
+      perSystem =
+        { pkgs, config, ... }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [ pkgs.git ];
+            name = "dots";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
         };
-      };
     };
 }

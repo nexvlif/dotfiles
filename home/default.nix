@@ -1,6 +1,16 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
+
+  imports = [
+    ./editors/nixvim
+  ];
+
   home = {
     username = "nex";
     homeDirectory = "/home/nex";
@@ -14,6 +24,9 @@
     spotify
     antigravity
     rofi
+    obsidian
     opencode
+
+    direnv
   ];
 }

@@ -1,9 +1,10 @@
-{ self, inputs, ... }: {
+{ self, inputs, ... }:
+{
   flake.nixosConfigurations = {
     nex = inputs.nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs self; };
       modules = [
-        ./nex
+        ./nex/configuration.nix
 
         inputs.lanzaboote.nixosModules.lanzaboote
 
@@ -24,4 +25,4 @@
       ];
     };
   };
-};
+}
