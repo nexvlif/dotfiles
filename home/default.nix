@@ -26,7 +26,15 @@
     rofi
     obsidian
     opencode
+    protonup-ng
+
+    nodejs
 
     direnv
   ];
+
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Original-Ice";
+  };
 }

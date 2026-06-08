@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nuripaper = {
+      url = "github:nexvlif/nuripaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-compat.url = "github:edolstra/flake-compat";
   };
 
