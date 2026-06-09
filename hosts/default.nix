@@ -6,7 +6,7 @@
       modules = [
         ./nex/configuration.nix
 
-        inputs.lanzaboote.nixosModules.lanzaboote
+        # inputs.lanzaboote.nixosModules.lanzaboote
 
         inputs.hm.nixosModules.home-manager
 

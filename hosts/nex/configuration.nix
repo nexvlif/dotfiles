@@ -12,10 +12,11 @@
     inputs.nuripaper.nixosModules.default
   ];
 
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
-  };
+  # boot.lanzaboote = {
+  #   enable = true;
+  #   pkiBundle = "/var/lib/sbctl";
+  # };
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "pnpacpi=off" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -57,7 +58,21 @@
 
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+      alias ls 'eza --icons --color=always --group-directories-first'
+      alias ll 'eza -alF --icons --color=always --group-directories-first'
+      alias la 'eza -a --icons --color=always --group-directories-first'
+      alias l  'eza -F --icons --color=always --group-directories-first'
+      alias l. 'eza -a | egrep "^\."'
+      alias c  'clear'
+    '';
+  };
+  programs.starship = {
+    enable = true;
+  };
   programs.steam.enable = true;
   programs.gamemode.enable = true;
   programs.gamescope = {
@@ -74,6 +89,7 @@
     dunst
     wget
     curl
+    eza
   ];
 
   fonts.packages = with pkgs; [
