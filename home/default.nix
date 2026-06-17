@@ -56,6 +56,7 @@
 
     hyprpicker
     hyprshot
+    hyprpaper
 
     nodejs
 

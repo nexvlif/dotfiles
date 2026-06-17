@@ -36,10 +36,6 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.printing.enable = true;
-  services.nuripaper = {
-    enable = true;
-    image = "/home/nex/Pictures/nx.jpg";
-  };
   services.pipewire = {
     enable = true;
     pulse.enable = true;
