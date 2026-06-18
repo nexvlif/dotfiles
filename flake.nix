@@ -1,19 +1,15 @@
 {
-  description = "nxf";
+  description = "nxf - nex's NixOS & Home-Manager config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    lanzaboote.url = "github:nix-community/lanzaboote";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
 
     hm = {
       url = "github:nix-community/home-manager";
@@ -34,6 +30,8 @@
     };
 
     flake-compat.url = "github:edolstra/flake-compat";
+
+    lanzaboote.url = "github:nix-community/lanzaboote";
   };
 
   outputs =
@@ -43,6 +41,9 @@
 
       imports = [
         ./hosts
+        ./lib
+        ./modules
+        ./pkgs
         ./fmt-hooks.nix
       ];
 

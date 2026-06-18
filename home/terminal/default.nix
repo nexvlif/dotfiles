@@ -1,0 +1,3 @@
+{
+  # Terminal programs & shell configuration
+}

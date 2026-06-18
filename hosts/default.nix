@@ -1,12 +1,13 @@
 { self, inputs, ... }:
+let
+  system = import ../system;
+in
 {
   flake.nixosConfigurations = {
     nex = inputs.nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs self; };
-      modules = [
+      modules = system.laptop ++ [
         ./nex/configuration.nix
-
-        # inputs.lanzaboote.nixosModules.lanzaboote
 
         inputs.hm.nixosModules.home-manager
 

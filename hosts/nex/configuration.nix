@@ -1,80 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
-
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    inputs.nuripaper.nixosModules.default
   ];
-
-  # boot.lanzaboote = {
-  #   enable = true;
-  #   pkiBundle = "/var/lib/sbctl";
-  # };
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "pnpacpi=off" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.settings.auto-optimise-store = true;
-  nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "nexvlif";
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "Asia/Jakarta";
-
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.printing.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-  services.libinput.enable = true;
-
-  users.users.nex = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    packages = with pkgs; [ tree ];
-    shell = pkgs.fish;
-  };
-
-  programs.firefox.enable = true;
-  programs.hyprland.enable = true;
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting
-      alias ls 'eza --icons --color=always --group-directories-first'
-      alias ll 'eza -alF --icons --color=always --group-directories-first'
-      alias la 'eza -a --icons --color=always --group-directories-first'
-      alias l  'eza -F --icons --color=always --group-directories-first'
-      alias l. 'eza -a | egrep "^\."'
-      alias c  'clear'
-    '';
-  };
-  programs.starship = {
-    enable = true;
-  };
-  programs.steam.enable = true;
-  programs.gamemode.enable = true;
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
 
   environment.systemPackages = with pkgs; [
     kitty
@@ -87,16 +17,4 @@
     curl
     eza
   ];
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-    liberation_ttf
-    dejavu_fonts
-    nerd-fonts.fira-code
-
-  ];
-
-  system.stateVersion = "26.05";
 }
