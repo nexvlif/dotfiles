@@ -87,17 +87,7 @@
 
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      ls = "eza --icons --color=always --group-directories-first";
-      ll = "eza -alF --icons --color=always --group-directories-first";
-      la = "eza -a --icons --color=always --group-directories-first";
-      l = "eza -F --icons --color=always --group-directories-first";
-      "l." = "eza -a | egrep '^\\.'";
-      c = "clear";
-    };
-  };
+  programs.fish.enable = true;
   programs.starship = {
     enable = true;
   };
@@ -105,7 +95,6 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    kitty
     neovim
     git
     github-cli
