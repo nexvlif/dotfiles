@@ -15,6 +15,8 @@
 
     fastfetch
     cava
+
+    gcc
   ];
 
   programs.git = {
