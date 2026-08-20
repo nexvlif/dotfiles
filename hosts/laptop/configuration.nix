@@ -6,13 +6,14 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["pnpacpi=off"];
+  boot.kernelParams = [ "pnpacpi=off" ];
   boot.loader.systemd-boot.configurationLimit = 20;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -20,8 +21,9 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    experimental-features = [ 
-      "nix-command" "flakes" 
+    experimental-features = [
+      "nix-command"
+      "flakes"
     ];
     auto-optimise-store = true;
   };
@@ -53,7 +55,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

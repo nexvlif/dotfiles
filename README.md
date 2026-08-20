@@ -1,1 +1,3 @@
-## nx
+## dotfiles
+
+just dots
