@@ -3,6 +3,7 @@
   imports = [
     ./programs
     ./services
+    ./terminal
   ];
 
   home.username = "nex";
